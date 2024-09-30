@@ -20,11 +20,11 @@ app.get("/produtos",async(req,res)=>{
     //PASSO 2: Usar a lib mysql2 para conectar com o banco
     try{
         const conexao = await mysql.createConnection({
-            host: "localhost",
-            user:"root",
-            password:"",
-            database:"banco1022b",
-            port:3306
+            host: process.env.dbhost ? process.env.dbhost: "localhost",
+            user: process.env.dbname ? process.env.dbname: "root",
+            password: process.env.dbuser ? process.env.dbuser: "",
+            database: process.env.dbpassword ? process.env.dbpassword: "banco1022b",
+            port: process.env.dbport ? parseInt (process.env.dbport):3306
         })
         //PASSO 3: QUERY  -> SELECT * FROM produtos
         const [result,fields]  = await conexao.query("SELECT * FROM produtos")
