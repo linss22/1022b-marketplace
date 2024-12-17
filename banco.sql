@@ -1,5 +1,5 @@
-DROP DATABASE banco1022b;
-CREATE DATABASE banco1022b;
+drop database banco1022b;
+create database banco1022b;
 USE banco1022b;
 CREATE TABLE IF NOT EXISTS produtos(
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,

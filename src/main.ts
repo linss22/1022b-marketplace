@@ -17,20 +17,10 @@ app.use(cors())
 import BancoMysql from './db/bancoMysql'
 
 app.get("/produtos",async(req,res)=>{
-
-    //O que eu tenho que fazer aqui dentro?
-    //OK -> PASSO 1: Criar o banco de dados
-    //PASSO 2: Usar a lib mysql2 para conectar com o banco
-    
-
     try{
-
-        //criamos um objeto do tipo banco de dados 
-        //Na hora que é criado o constructor é iniciado
-
         const banco = new BancoMysql();
-        banco.query()
-        banco.end
+        const result = banco.query()
+        banco.end()
         res.send(result)
 
     }catch(e){
@@ -52,7 +42,7 @@ app.post("/produtos",async(req,res)=>{
             await conexao.query("INSERT INTO produtos VALUES (?,?,?,?,?)",
                 [id,nome,descricao,preco,imagem])
         await conexao.end()
-        res.send(result)
+        res.status(200).send(result)
     }catch(e){
         console.log(e)
         res.status(500).send("Erro do servidor")
