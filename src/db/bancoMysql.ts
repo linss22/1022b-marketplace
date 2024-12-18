@@ -14,7 +14,7 @@ class BancoMysql{
             port:process.env.dbport?parseInt(process.env.dbport):3306
         })
         .then(conn=>this.conexao=conn)
-        //.catch(e=>new Error("Erro de banco de dados"))
+        .catch(e=>console.log(e))
     }
 
     async query(){
